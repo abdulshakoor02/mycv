@@ -13,15 +13,15 @@ import { profile } from '@/components/content/profile'
 export default function ScrollPortfolio() {
   const { state, goToChapter } = useScrollWorld()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [webgl, setWebgl] = useState(true)
+  const [webgl, setWebgl] = useState<boolean | null>(null)
 
   useEffect(() => {
-    try { const canvas = document.createElement('canvas'); setWebgl(Boolean(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))) } catch { setWebgl(false) }
+    try { const canvas = document.createElement('canvas'); setWebgl(Boolean(canvas.getContext('webgl2'))) } catch { setWebgl(false) }
   }, [])
 
   const navigate = (index: number) => { goToChapter(index); setMenuOpen(false) }
   return <div className="observatory-shell">
-    {webgl && <ScrollWorld state={state} />}
+    {webgl === true && <ScrollWorld state={state} />}
     <header className="observatory-nav">
       <button className="brand-mark" onClick={() => navigate(0)} aria-label="Go to the beginning"><span>AS</span><small>SYSTEMS OBSERVATORY</small></button>
       <nav className="desktop-nav" aria-label="Chapter navigation">{chapters.map((chapter, index) => <a key={chapter.id} href={`#${chapter.id}`} aria-current={state.index === index ? 'page' : undefined} onClick={(event) => { event.preventDefault(); navigate(index) }}>{chapter.label}</a>)}</nav>
@@ -40,7 +40,7 @@ export default function ScrollPortfolio() {
       <section id="contact" data-cam="contact" className="story-section contact-section"><div className="story-content"><p className="eyebrow">{chapters[5].eyebrow}</p><h2>{chapters[5].title}</h2><p>{chapters[5].summary}</p><div className="contact-actions"><a className="primary-action" href={`mailto:${profile.email}`}><Mail size={17} /> Email Abdulshakoor <ArrowUpRight size={16} /></a><a className="secondary-action" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> Connect on LinkedIn <ArrowUpRight size={16} /></a></div><div className="contact-location"><MapPin size={15} /> {profile.location} · Available for remote work</div></div><span className="chapter-index">05</span></section>
     </main>
     <footer className="observatory-footer"><div><strong>{profile.name}</strong><p>Software engineering across systems, interfaces, and delivery.</p></div><div><a href={`mailto:${profile.email}`}><Mail size={14} /> Email</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn</a></div><div className="footer-note"><Github size={14} /> Built as an original Systems Observatory · {new Date().getFullYear()}</div></footer>
-    {!webgl && <div className="webgl-notice" role="status">The animated observatory is unavailable. The complete portfolio remains available in this document.</div>}
+    {webgl === false && <div className="webgl-notice" role="status">The animated observatory is unavailable. The complete portfolio remains available in this document.</div>}
   </div>
 }
 

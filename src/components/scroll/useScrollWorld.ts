@@ -1,14 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { ScrollConductor } from './ScrollConductor'
 import { createScrollWorldStore, type ScrollWorldStore } from './scroll-store'
 
 export function useScrollWorld() {
-  const storeRef = useRef<ScrollWorldStore | null>(null)
+  const [store] = useState<ScrollWorldStore>(createScrollWorldStore)
   const conductorRef = useRef<ScrollConductor | null>(null)
-  if (!storeRef.current) storeRef.current = createScrollWorldStore()
-  const store = storeRef.current
   const state = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getServerSnapshot)
 
   useEffect(() => {
@@ -35,7 +33,8 @@ export function useScrollWorld() {
     }
   }, [store])
 
-  return { state, store, goToChapter: (index: number) => conductorRef.current?.goTo(index), conductor: conductorRef.current }
+  const goToChapter = useCallback((index: number) => conductorRef.current?.goTo(index), [])
+  return { state, store, goToChapter }
 }
 
 export default useScrollWorld

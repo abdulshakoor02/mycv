@@ -1,7 +1,7 @@
 'use client'
 
 import { Github, Linkedin, Mail } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useWebGLSupport } from './webgl-store'
 import EditorialNav from './EditorialNav'
 import { useScrollWorld } from './useScrollWorld'
 import ScrollWorld from '@/components/world/ScrollWorld'
@@ -15,16 +15,7 @@ import ContactChapter from './chapters/ContactChapter'
 
 export default function ScrollPortfolio() {
   const { state, store, goToChapter } = useScrollWorld()
-  const [webgl, setWebgl] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    try {
-      const canvas = document.createElement('canvas')
-      setWebgl(Boolean(canvas.getContext('webgl2')))
-    } catch {
-      setWebgl(false)
-    }
-  }, [])
+  const webgl = useWebGLSupport()
 
   const navigate = (index: number) => {
     goToChapter(index)

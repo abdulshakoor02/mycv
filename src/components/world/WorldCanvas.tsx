@@ -427,14 +427,14 @@ function WorldLighting({ store }: { store: ScrollWorldStore }) {
 }
 
 export default function WorldCanvas({ store }: { store: ScrollWorldStore }) {
-  const { camera, size } = useThree()
+  const { size } = useThree()
   const mobile = size.width < 800
   const positionCurve = useMemo(() => new THREE.CatmullRomCurve3(vectorPoints((mobile ? mobileCameraWaypoints : cameraWaypoints).map(({ position }) => position)), false, 'catmullrom', 0.45), [mobile])
   const targetCurve = useMemo(() => new THREE.CatmullRomCurve3(vectorPoints((mobile ? mobileCameraWaypoints : cameraWaypoints).map(({ target }) => target)), false, 'catmullrom', 0.45), [mobile])
   const desiredPosition = useMemo(() => new THREE.Vector3(), [])
   const desiredTarget = useMemo(() => new THREE.Vector3(), [])
   const tangent = useMemo(() => new THREE.Vector3(), [])
-  useFrame((_, dt) => {
+  useFrame(({ camera: activeCamera }, dt) => {
     const state = store.getState()
     const progress = clamp(state.smooth / 5, 0, 1)
     positionCurve.getPointAt(progress, desiredPosition)
@@ -442,19 +442,19 @@ export default function WorldCanvas({ store }: { store: ScrollWorldStore }) {
     positionCurve.getTangentAt(progress, tangent)
     const reducedMotion = store.getReducedMotion()
     if (reducedMotion) {
-      camera.position.copy(desiredPosition)
+      activeCamera.position.copy(desiredPosition)
     } else {
-      camera.position.x = damp(camera.position.x, desiredPosition.x, 4.8, dt)
-      camera.position.y = damp(camera.position.y, desiredPosition.y, 4.8, dt)
-      camera.position.z = damp(camera.position.z, desiredPosition.z, 4.8, dt)
+      activeCamera.position.x = damp(activeCamera.position.x, desiredPosition.x, 4.8, dt)
+      activeCamera.position.y = damp(activeCamera.position.y, desiredPosition.y, 4.8, dt)
+      activeCamera.position.z = damp(activeCamera.position.z, desiredPosition.z, 4.8, dt)
     }
-    camera.lookAt(desiredTarget)
+    activeCamera.lookAt(desiredTarget)
     const targetRoll = reducedMotion ? 0 : clamp(-tangent.x * 0.035, -0.045, 0.045)
-    camera.rotation.z = reducedMotion ? 0 : damp(camera.rotation.z, targetRoll, 3.8, dt)
-    if ('fov' in camera) {
+    activeCamera.rotation.z = reducedMotion ? 0 : damp(activeCamera.rotation.z, targetRoll, 3.8, dt)
+    if ('fov' in activeCamera) {
       const fov = sampleWaypointValue(mobile ? mobileCameraWaypoints : cameraWaypoints, progress, 'fov')
-      camera.fov = reducedMotion ? fov : damp(camera.fov, fov, 4.8, dt)
-      camera.updateProjectionMatrix()
+      activeCamera.fov = reducedMotion ? fov : damp(activeCamera.fov, fov, 4.8, dt)
+      activeCamera.updateProjectionMatrix()
     }
   })
   return <>

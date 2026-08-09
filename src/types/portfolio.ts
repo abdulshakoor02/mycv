@@ -32,6 +32,12 @@ export type Chapter = {
   summary: string
 }
 
+export type CameraWaypoint = {
+  position: [number, number, number]
+  target: [number, number, number]
+  fov: number
+}
+
 export type ScrollWorldState = {
   exact: number
   smooth: number
@@ -82,17 +88,17 @@ export const chapters: Chapter[] = [
   { id: 'contact', label: 'Contact', eyebrow: '05 — OPEN CHANNEL', title: 'Let’s build the next reliable system.', summary: 'Based in Dubai and open to thoughtful engineering conversations and collaborations.' },
 ]
 
-export const cameraWaypoints = [
-  { position: [0, 5.5, 18] as [number, number, number], target: [0, 3, -10] as [number, number, number], fov: 42 },
-  { position: [-5.5, 4.3, 10] as [number, number, number], target: [0, 3.5, -10] as [number, number, number], fov: 44 },
-  { position: [1, 3.2, 3] as [number, number, number], target: [0, 2.5, -13] as [number, number, number], fov: 48 },
-  { position: [5, 4.5, -2] as [number, number, number], target: [0, 3.2, -12] as [number, number, number], fov: 46 },
-  { position: [0, 5.8, -12] as [number, number, number], target: [0, 2, -17] as [number, number, number], fov: 48 },
-  { position: [0, 9, -20] as [number, number, number], target: [0, 2, -28] as [number, number, number], fov: 52 },
+export const cameraWaypoints: CameraWaypoint[] = [
+  { position: [0, 3.8, 16], target: [0, 1.8, 2], fov: 48 },
+  { position: [-4.8, 3.4, 8], target: [0, 2, -6], fov: 50 },
+  { position: [3.2, 2.8, -1], target: [0, 2.2, -14], fov: 52 },
+  { position: [-2.4, 4.1, -10], target: [0, 2.3, -23], fov: 50 },
+  { position: [0.5, 5, -20], target: [0, 2.2, -33], fov: 52 },
+  { position: [0, 4.2, -31], target: [0, 2, -44], fov: 55 },
 ]
 
 export const projectLandmarkPositions: Record<string, [number, number, number]> = {
-  payments: [-4.2, 1.5, -9], checknshare: [-1.4, 2.4, -12], opal: [1.8, 1.4, -10], crm: [4.3, 2.2, -8],
+  payments: [-3.8, 1.6, -34], checknshare: [-1.2, 2.6, -35.5], opal: [1.4, 1.5, -34], crm: [3.8, 2.3, -36.2],
 }
 
 export const chapterColors = ['#70e6e0', '#74b9ff', '#ffbf69', '#b8f36b', '#ffd166', '#f6f7eb']

@@ -26,6 +26,15 @@ const mobileCamera = (position: [number, number, number], target: [number, numbe
   fov: fov + 7,
 })
 
+const chapterFocus = [
+  ['origin', 'current'],
+  ['coordination-span', 'junctions'],
+  ['service-delta', 'event-routes'],
+  ['stack-plates', 'conduits'],
+  ['payments', 'checknshare', 'opal', 'crm'],
+  ['open-horizon'],
+]
+
 export const chapterConfig: ChapterConfig[] = chapters.map((chapter, index) => {
   const waypoint = cameraWaypoints[index]
   return {
@@ -37,8 +46,8 @@ export const chapterConfig: ChapterConfig[] = chapters.map((chapter, index) => {
       mobile: mobileCamera(waypoint.position, waypoint.target, waypoint.fov),
     },
     accent: chapterColors[index],
-    focus: index === 4 ? ['payments', 'checknshare', 'opal', 'crm'] : index === 2 ? ['spine', 'service-towers', 'storage'] : [],
-    interactions: index === 4 ? ['focus-project'] : [],
+    focus: chapterFocus[index],
+    interactions: index === 4 ? ['focus-project', 'reveal-routes'] : ['world-travel'],
   }
 })
 

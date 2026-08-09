@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import type { ScrollWorldState } from '@/types/portfolio'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { ScrollConductor } from './ScrollConductor'
-
-const initialState: ScrollWorldState = { exact: 0, smooth: 0, index: 0, next: 1, localExact: 0, localSmooth: 0, direction: 0 }
+import { createScrollWorldStore, type ScrollWorldStore } from './scroll-store'
 
 export function useScrollWorld() {
-  const [state, setState] = useState<ScrollWorldState>(initialState)
+  const storeRef = useRef<ScrollWorldStore | null>(null)
   const conductorRef = useRef<ScrollConductor | null>(null)
+  if (!storeRef.current) storeRef.current = createScrollWorldStore()
+  const store = storeRef.current
+  const state = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getServerSnapshot)
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-cam]'))
@@ -17,10 +18,13 @@ export function useScrollWorld() {
     const conductor = new ScrollConductor({
       sections,
       reducedMotion: reduced.matches,
-      onUpdate: setState,
-      onChapterChange: (_, nextState) => setState(nextState),
+      onUpdate: store.setState,
     })
-    const onPreferenceChange = (event: MediaQueryListEvent) => conductor.setReducedMotion(event.matches)
+    store.setReducedMotion(reduced.matches)
+    const onPreferenceChange = (event: MediaQueryListEvent) => {
+      store.setReducedMotion(event.matches)
+      conductor.setReducedMotion(event.matches)
+    }
     reduced.addEventListener?.('change', onPreferenceChange)
     conductor.start()
     conductorRef.current = conductor
@@ -29,9 +33,11 @@ export function useScrollWorld() {
       conductor.destroy()
       conductorRef.current = null
     }
-  }, [])
+  }, [store])
 
-  return { state, goToChapter: (index: number) => conductorRef.current?.goTo(index), conductor: conductorRef.current }
+  return { state, store, goToChapter: (index: number) => conductorRef.current?.goTo(index), conductor: conductorRef.current }
 }
 
 export default useScrollWorld
+
+export type { ScrollWorldStore }

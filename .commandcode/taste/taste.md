@@ -1,0 +1,3 @@
+- When building a site inspired by a reference, prefers inspecting the associated skills/agent-playbook repository and using its guidance to inform implementation. Confidence: 0.85
+- Prefers a seamless, authored Three.js/WebGL background to be the visual hero of a site—not merely a decorative or atmospheric layer—and considers flat or ordinary backgrounds a significant shortcoming. Confidence: 0.98
+- Prefers personal branding to use the full name “ABDUL SHAKOOR ANSARI” in the top-left label, alongside the existing “AS” mark, rather than a generic site descriptor. Confidence: 0.97

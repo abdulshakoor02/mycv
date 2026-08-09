@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "typecheck": "tsc --noEmit",
     "start": "next start -p 3200",
     "lint": "next lint"
   },

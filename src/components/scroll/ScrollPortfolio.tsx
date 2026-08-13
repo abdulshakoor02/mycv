@@ -24,6 +24,8 @@ export default function ScrollPortfolio() {
 
   return <div className="observatory-shell" data-active-chapter={chapters[state.index].id} style={{ '--chapter-accent': `var(--chapter-${chapters[state.index].id})` } as React.CSSProperties}>
     <a className="skip-link" href="#identity">Skip to portfolio content</a>
+    <div className="obs-vignette" aria-hidden="true" />
+    <div className="obs-grain" aria-hidden="true" />
     {webgl !== null && <ScrollWorld store={store} enabled={webgl} />}
     <EditorialNav chapters={chapters} activeIndex={state.index} navigate={navigate} />
     <main id="main-content">

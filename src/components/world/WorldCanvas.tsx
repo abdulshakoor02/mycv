@@ -465,7 +465,7 @@ function WorldLighting({ store }: { store: ScrollWorldStore }) {
     const progress = clamp(store.getState().smooth / 5, 0, 1)
     const chapter = store.getState().index
     if (cool.current) cool.current.intensity = damp(cool.current.intensity, 1.2 + (1 - progress) * 1.2, 3, dt)
-    if (warm.current) warm.current.intensity = damp(warm.current.intensity, chapter === 4 ? 4.5 : chapter === 5 ? 2.8 : 1.5 + progress * 1.2, 3, dt)
+    if (warm.current) warm.current.intensity = damp(warm.current.intensity, chapter === 4 ? 5.2 : chapter === 5 ? 3.1 : 1.5 + progress * 1.35, 3, dt)
     if (edge.current) edge.current.intensity = damp(edge.current.intensity, 1.1 + progress * 1.8, 3, dt)
   })
   return <>

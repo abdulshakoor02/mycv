@@ -1,4 +1,5 @@
 import { chapters } from '@/components/content/profile'
+import { totalExperienceLabel } from '@/types/portfolio'
 import ChapterReveal from '../ChapterReveal'
 import ChapterSection from '../ChapterSection'
 
@@ -18,9 +19,10 @@ export default function LeadershipChapter() {
       <ol className="leadership-list" aria-label="Leadership approach">{leadershipSteps.map(([number, label], index) => <ChapterReveal key={label} delay={180 + index * 50} as="li"><span>{number}</span><strong>{label}</strong></ChapterReveal>)}</ol>
     </div>
     <ChapterReveal className="stats-panel" delay={160}>
-      <strong>04</strong><span>roles across software teams</span>
-      <strong>06+</strong><span>layers considered in a system</span>
-      <strong>01</strong><span>shared path from idea to operation</span>
+      <strong>6+</strong><span>years across product teams</span>
+      <strong>04</strong><span>teams led and supported</span>
+      <strong>GCC</strong><span>banking, mobility & operations — Dubai</span>
+      <small className="stats-footnote">{totalExperienceLabel}</small>
     </ChapterReveal>
   </ChapterSection>
 }

@@ -223,6 +223,25 @@ h3 { font-family: var(--font-display); }
   .primary-action, .secondary-action { justify-content: space-between; }
 }
 
+
+/* Proficiency tags inside layer-grid */
+.layer-grid ul li { display: inline-flex; align-items: center; gap: 6px; }
+.skill-proficiency { display: inline-grid; place-items: center; padding: 2px 6px; border: 1px solid var(--line); background: rgba(112,230,224,.08); color: var(--cyan); font-size: 8px; letter-spacing: .08em; }
+
+/* Project chapter enhancements */
+.project-period { margin-left: auto; color: var(--muted); font-size: 9px; }
+.project-role { grid-column: 2; margin: -8px 0 2px; color: var(--amber); font: 10px/1.5 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; }
+.stats-footnote { display: block; margin-top: 18px; color: var(--muted); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+.project-heading { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.observatory-footer > div:nth-child(2) a { white-space: nowrap; }
+
+@media (max-width: 1100px) {
+  .project-role { grid-column: 2; }
+}
+@media (max-width: 800px) {
+  .project-role { grid-column: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
   .chapter-reveal.reveal-ready, .chapter-reveal.reveal-ready.is-visible { opacity: 1; transform: none; filter: none; transition: none; }

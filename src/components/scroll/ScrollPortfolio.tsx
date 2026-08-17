@@ -1,11 +1,12 @@
 'use client'
 
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { FileText, Github, Linkedin, Mail } from 'lucide-react'
 import { useWebGLSupport } from './webgl-store'
 import EditorialNav from './EditorialNav'
 import { useScrollWorld } from './useScrollWorld'
 import ScrollWorld from '@/components/world/ScrollWorld'
 import { chapters, profile } from '@/components/content/profile'
+import { footerYear, resumeUrl } from '@/types/portfolio'
 import IdentityChapter from './chapters/IdentityChapter'
 import LeadershipChapter from './chapters/LeadershipChapter'
 import SystemsChapter from './chapters/SystemsChapter'
@@ -38,8 +39,8 @@ export default function ScrollPortfolio() {
     </main>
     <footer className="observatory-footer">
       <div><strong>{profile.name}</strong><p>Software engineering across systems, interfaces, and delivery.</p></div>
-      <div><a href={`mailto:${profile.email}`}><Mail size={14} /> Email</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn</a></div>
-      <div className="footer-note"><Github size={14} /> Original Systems Field Guide · {new Date().getFullYear()}</div>
+      <div><a href={`mailto:${profile.email}`}><Mail size={14} /> Email</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn</a><a href={resumeUrl}><FileText size={14} /> Resume</a></div>
+      <div className="footer-note"><Github size={14} /> Original Systems Field Guide · {footerYear}</div>
     </footer>
     {webgl === false && <div className="webgl-notice" role="status">The complete portfolio is available in this document.</div>}
   </div>

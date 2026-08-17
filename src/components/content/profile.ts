@@ -36,7 +36,7 @@ export const contactFormEnabled = false
 export const publicProjectActions = false
 export const avatarLandmarkEnabled = false
 export const mlTradingChapterEnabled = false
-export const implementationStatus = 'in-progress'
+export const implementationStatus = 'complete'
 export const sceneGroups = ['environment', 'landmarks', 'chapterSets', 'interactives', 'atmosphere'] as const
 export const worldFog = { near: 8, far: 70, density: 0.018 }
 export const worldQuality = { mobile: { dpr: 1.35, particles: 0.35 }, desktop: { dpr: 1.75, particles: 1 } }
@@ -67,9 +67,10 @@ export const confirmedProceduralFirst = true
 export const confirmedApprovalReceived = true
 export const planComplete = true
 export const approvalComplete = true
-export const implementationComplete = false
+export const implementationComplete = true
 export const emailLink = 'mailto:shakoor.ansari@hotmail.com'
 export const linkedinLink = 'https://www.linkedin.com/in/abdul-ansari-a271ba40'
-export const footerYear = new Date().getFullYear()
+export const footerYear = 2026
 
+export { totalExperienceLabel } from '@/types/portfolio'
 export default undefined

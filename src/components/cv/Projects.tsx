@@ -15,6 +15,7 @@ export default function Projects() {
             <article className="card project-card">
               <span className="project-num">0{i + 1}</span>
               <h3>{p.title}</h3>
+              {p.role && <p className="project-role">{p.role}{p.period ? ` · ${p.period}` : ''}</p>}
               <p>{p.description}</p>
               <ul className="project-features">
                 {p.features.map((f) => <li key={f}>{f}</li>)}

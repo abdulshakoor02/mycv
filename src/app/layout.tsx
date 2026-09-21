@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#050a0e",
-  colorScheme: "dark" as const,
+  themeColor: "#f7f4ee",
+  colorScheme: "light" as const,
 };
 
 const jsonLd = {
@@ -42,5 +42,5 @@ const jsonLd = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />{children}</body></html>;
+  return <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />{children}</body></html>;
 }

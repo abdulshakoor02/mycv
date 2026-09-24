@@ -120,6 +120,45 @@ export const experiences: Experience[] = [
     ],
     technologies: ['Node.js', 'MySQL', 'React', 'Docker'],
   },
+  {
+    id: 'wns',
+    title: 'Senior Associate',
+    company: 'WNS Global Services India',
+    period: 'Aug 2017 — Nov 2018',
+    location: 'India',
+    description: [
+      'Contributed to a healthcare application by developing operational dashboards and reports that made business data easier to review and act on',
+      'Built and maintained reusable user-interface components in React and Vue.js, translating reporting requirements into clear application views',
+      'Supported ongoing application enhancements and issue resolution to keep dashboards accurate, usable, and aligned with operational needs',
+    ],
+    technologies: ['React', 'Vue.js', 'Dashboards', 'Reporting'],
+  },
+  {
+    id: 'reliance',
+    title: 'Technical Support Engineer',
+    company: 'Reliance India',
+    period: 'May 2015 — Mar 2016',
+    location: 'India',
+    description: [
+      'Provided technical support for database-related incidents, investigating reported issues and helping restore normal service',
+      'Assisted with routine database checks, data validation, and SQL-based troubleshooting to identify the source of application and data issues',
+      'Documented findings and coordinated issue resolution with relevant technical teams, keeping users informed through the support lifecycle',
+    ],
+    technologies: ['Database Support', 'SQL', 'Troubleshooting', 'Incident Support'],
+  },
+  {
+    id: 'jrad-infotech',
+    title: 'Junior DBA',
+    company: 'Jrad Infotech India',
+    period: 'Jun 2012 — Jul 2013',
+    location: 'India',
+    description: [
+      'Supported day-to-day database administration, monitoring database health and assisting with routine maintenance activities',
+      'Managed RMAN backup tasks and helped verify backup availability to support reliable recovery when required',
+      'Assisted with database migrations and recovery activities, following established procedures to protect data integrity and service continuity',
+    ],
+    technologies: ['Database Administration', 'RMAN', 'Backup & Recovery', 'Database Migration'],
+  },
 ]
 
 export const skillCategories: SkillCategory[] = [

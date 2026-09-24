@@ -9,7 +9,7 @@ export default function Contact() {
         <Reveal>
           <div className="card contact-card">
             <p className="eyebrow">Open Channel</p>
-            <h2>Let's build the next reliable system.</h2>
+            <h2>Let&apos;s build the next reliable system.</h2>
             <p>Based in {profile.location} and open to thoughtful engineering conversations and collaborations.</p>
             <p className="contact-loc"><MapPin size={15} /> {profile.location} · Available for remote work</p>
           </div>

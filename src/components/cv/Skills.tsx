@@ -1,10 +1,5 @@
 import { skillCategories } from '@/types/portfolio'
-import type { Skill } from '@/types/portfolio'
 import Reveal from './Reveal'
-
-/** Map a proficiency label to a 5-dot rating (single consistent meter). */
-const toDots = (proficiency: Skill['proficiency']) =>
-  proficiency === 'Leading' ? 5 : proficiency === 'Proficient' ? 4 : 3
 
 export default function Skills() {
   return (
@@ -23,17 +18,12 @@ export default function Skills() {
                 <h3>{cat.name}</h3>
               </div>
               <ul className="skill-list">
-                {cat.skills.map((s) => {
-                  const on = toDots(s.proficiency)
-                  return (
-                    <li key={s.name}>
-                      <span className="sname">{s.name}</span>
-                      <span className="dots" role="img" aria-label={`${s.name}: ${s.proficiency} (${on} out of 5)`}>
-                        {Array.from({ length: 5 }, (_, d) => <i key={d} className={d < on ? 'on' : ''} />)}
-                      </span>
-                    </li>
-                  )
-                })}
+                {cat.skills.map((skill) => (
+                  <li key={skill.name}>
+                    <span className="sname">{skill.name}</span>
+                    <span className="proficiency">{skill.proficiency}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </Reveal>
